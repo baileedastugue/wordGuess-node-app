@@ -22,11 +22,10 @@ function Letter (underlyingChar, letterGuessed) {
         if(this.underlyingChar == char) {
             this.letterGuessed = true;
         }
-        this.beenGuessed();
     }
     this.beenGuessed = function() {
         if (this.letterGuessed) {
-            console.log(underlyingChar);
+           console.log(underlyingChar);
         }
         else {
             var underscore = "_";
@@ -43,22 +42,26 @@ for (var i = 0; i < sampleArray.length; i++){
 
 
 var inquirer = require("inquirer");
-inquirer.prompt([
-    {
-        type: "input",
-        name: "char",
-        message: "guess a letter",
-        validate: function(value) {
-            if (value.length == 1 && isNaN(value)) {
-                return true;
-            }
-            return false;
-        } 
-    }
-]).then (function(response) {
-    for (var i = 0; i < letterArray.length; i++) {
-        letterArray[i].checkGuess(response.char);
-    }
-})
-
-
+promptUser();
+function promptUser() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "char",
+            message: "guess a letter",
+            validate: function(value) {
+                if (value.length == 1 && isNaN(value)) {
+                    return true;
+                }
+                return false;
+            } 
+        }
+    ]).then (function(response) {
+        for (var i = 0; i < letterArray.length; i++) {
+            letterArray[i].checkGuess(response.char);
+            letterArray[i].beenGuessed();
+            // letterArray = letterArray;
+        }
+        promptUser();
+    })
+}
