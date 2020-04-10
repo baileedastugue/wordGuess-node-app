@@ -13,49 +13,52 @@
 var guessedChar;
 var sampleWord = "apple";
 var sampleArray = sampleWord.split("");
-var thisArray = [];
+var letterArray = [];
 
 function Letter (underlyingChar, letterGuessed) {
     this.underlyingChar = underlyingChar;
     this.letterGuessed = false; 
+    this.checkGuess = function (char) {
+        if(this.underlyingChar == char) {
+            this.letterGuessed = true;
+        }
+        this.beenGuessed();
+    }
     this.beenGuessed = function() {
-        if (letterGuessed) {
-            return underlyingChar;
+        if (this.letterGuessed) {
+            console.log(underlyingChar);
         }
         else {
-            return console.log("_");
-        }
-    }
-    this.checkGuess = function (char) {
-        if(this.underlyingChar === char) {
-            this.letterGuessed = true;
-            this.beenGuessed();
+            var underscore = "_";
+            console.log(underscore);
         }
     }
 }
 
+// creates an array of letters using the constructor 
 for (var i = 0; i < sampleArray.length; i++){
-    thisArray[i] = new Letter(sampleArray[i]);
+    letterArray[i] = new Letter(sampleArray[i]);
 }
 
-console.log(thisArray[1].letterGuessed);
 
-// var inquirer = require("inquirer");
-// inquirer.prompt([
-//     {
-//         type: "input",
-//         name: "char",
-//         message: "guess a letter",
-//         validate: function(value) {
-//             if (value.length == 1 && isNaN(value)) {
-//                 return true;
-//             }
-//             return false;
-//         } 
-//     }
-// ]).then (function(response) {
-//     guessedChar = response.char; 
-//     console.log(0);
-// })
+
+var inquirer = require("inquirer");
+inquirer.prompt([
+    {
+        type: "input",
+        name: "char",
+        message: "guess a letter",
+        validate: function(value) {
+            if (value.length == 1 && isNaN(value)) {
+                return true;
+            }
+            return false;
+        } 
+    }
+]).then (function(response) {
+    for (var i = 0; i < letterArray.length; i++) {
+        letterArray[i].checkGuess(response.char);
+    }
+})
 
 
