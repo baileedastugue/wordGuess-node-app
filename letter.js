@@ -13,37 +13,49 @@
 var guessedChar;
 var sampleWord = "apple";
 var sampleArray = sampleWord.split("");
-console.log(sampleArray);
+var thisArray = [];
 
-var inquirer = require("inquirer");
-inquirer.prompt([
-    {
-        type: "input",
-        name: "char",
-        message: "guess a letter",
-        validate: function(value) {
-            if (value.length == 1 && isNaN(value)) {
-                return true;
-            }
-            return false;
-        } 
+function Letter (underlyingChar, letterGuessed) {
+    this.underlyingChar = underlyingChar;
+    this.letterGuessed = false; 
+    this.beenGuessed = function() {
+        if (letterGuessed) {
+            return underlyingChar;
+        }
+        else {
+            return console.log("_");
+        }
     }
-]).then (function(response) {
-    guessedChar = response.char; 
-})
+    this.checkGuess = function (char) {
+        if(this.underlyingChar === char) {
+            this.letterGuessed = true;
+            this.beenGuessed();
+        }
+    }
+}
 
-// function Letter (underlyingChar, letterGuessed) {
-//     this.underlyingChar = underlyingChar;
-//     this.letterGuessed = false; 
-//     this.beenGuessed = function() {
-//         if (letterGuessed) {
-//             return underlyingChar;
-//         }
-//         else {
-//             return console.log("_");
-//         }
+for (var i = 0; i < sampleArray.length; i++){
+    thisArray[i] = new Letter(sampleArray[i]);
+}
+
+console.log(thisArray[1].letterGuessed);
+
+// var inquirer = require("inquirer");
+// inquirer.prompt([
+//     {
+//         type: "input",
+//         name: "char",
+//         message: "guess a letter",
+//         validate: function(value) {
+//             if (value.length == 1 && isNaN(value)) {
+//                 return true;
+//             }
+//             return false;
+//         } 
 //     }
-//     this.checkGuess = function (char) {
-//         if()
-//     }
-// }
+// ]).then (function(response) {
+//     guessedChar = response.char; 
+//     console.log(0);
+// })
+
+
