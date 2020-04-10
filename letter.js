@@ -10,6 +10,11 @@
         // if char === underlyingChar --> letterGuessed = true
         // call other function
 
+var guessedChar;
+var sampleWord = "apple";
+var sampleArray = sampleWord.split("");
+console.log(sampleArray);
+
 var inquirer = require("inquirer");
 inquirer.prompt([
     {
@@ -24,5 +29,21 @@ inquirer.prompt([
         } 
     }
 ]).then (function(response) {
-    console.log(typeof(response.char));  
+    guessedChar = response.char; 
 })
+
+// function Letter (underlyingChar, letterGuessed) {
+//     this.underlyingChar = underlyingChar;
+//     this.letterGuessed = false; 
+//     this.beenGuessed = function() {
+//         if (letterGuessed) {
+//             return underlyingChar;
+//         }
+//         else {
+//             return console.log("_");
+//         }
+//     }
+//     this.checkGuess = function (char) {
+//         if()
+//     }
+// }
