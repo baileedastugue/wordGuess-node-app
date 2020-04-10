@@ -23,13 +23,13 @@ function Letter (underlyingChar, letterGuessed) {
             this.letterGuessed = true;
         }
     }
-    this.beenGuessed = function() {
+    this.toString = function() {
         if (this.letterGuessed) {
-           console.log(underlyingChar);
+           return this.underlyingChar;
         }
         else {
             var underscore = "_";
-            console.log(underscore);
+            return underscore;
         }
     }
 }
@@ -40,7 +40,7 @@ for (var i = 0; i < sampleArray.length; i++){
 }
 
 
-
+var output = [];
 var inquirer = require("inquirer");
 promptUser();
 function promptUser() {
@@ -59,9 +59,9 @@ function promptUser() {
     ]).then (function(response) {
         for (var i = 0; i < letterArray.length; i++) {
             letterArray[i].checkGuess(response.char);
-            letterArray[i].beenGuessed();
-            // letterArray = letterArray;
+            
         }
+        console.log(letterArray.join(' '));
         promptUser();
     })
 }
