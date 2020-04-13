@@ -1,18 +1,13 @@
-// create a constructor, Letter
-// display an underlying character or a blank placeholder
-    // underlyingChar (string)
-    // letterGuessed (boolean)
-    // function ():
-        // if letter has been guessed --> return letter
-        // if letter has not been guessed --> return underscore
-    // function (char): 
-        // checks it against underlyingChar
-        // if char === underlyingChar --> letterGuessed = true
-        // call other function
-
+// a constructor
 function Letter (underlyingChar) {
+    // stores the underlying character for each letter in the word
     this.underlyingChar = underlyingChar;
-    this.letterGuessed = false; 
+    
+    // stores whether the letter has been guessed or not
+    this.letterGuessed = false;
+    
+    // returns the underlying character or an underscore
+    // depends on the user's guess
     this.toString = function() {
         if (this.letterGuessed) {
             return this.underlyingChar;
@@ -22,6 +17,7 @@ function Letter (underlyingChar) {
             return underscore;
         }
     }
+    // checks the guess against the underlying character
     this.checkGuess = function (char) {
         if(this.underlyingChar == char) {
             this.letterGuessed = true;
