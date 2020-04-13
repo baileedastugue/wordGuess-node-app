@@ -12,7 +12,6 @@
 
 function Letter (underlyingChar) {
     this.underlyingChar = underlyingChar;
-    this.guessesLeft = 10;
     this.letterGuessed = false; 
     this.toString = function() {
         if (this.letterGuessed) {
@@ -29,7 +28,6 @@ function Letter (underlyingChar) {
             return true;
         }
         else {
-            this.guessesLeft -= 1;
             return false;
         }
     }
