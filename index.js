@@ -1,12 +1,12 @@
 var inquirer = require("inquirer");
 var Word = require("./word");
-var wordList = ["broach", "travesty", "stipple", "gorge", "wince", "garble", "aver", "impetuous", "lachrymose", "propinquity", "caustic", "coda", "precepts"]
-var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+var wordList = ["broach", "travesty", "stipple", "gorge", "wince", "garble", "aver", "impetuous", "lachrymose", "propinquity", "caustic", "coda", "precepts"];
 
 function startGame() {
+    var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     pickedWord = new Word();
-    console.log(randomWord);
     pickedWord.createArray(randomWord);
+    promptUser();
 }
 
 startGame();
@@ -26,11 +26,8 @@ function promptUser() {
             } 
         }
     ]).then (function(response) {
-        for (var i = 0; i < letterArray.length; i++) {
-            letterArray[i].checkGuess(response.char);
-            
-        }
-        
+        pickedWord.callCheck(response.char);
+        console.log(pickedWord.letterArray.join(' '));
         promptUser();
     })
 }

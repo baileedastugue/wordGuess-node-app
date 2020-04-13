@@ -13,7 +13,6 @@ function Word () {
         console.log(this.letterArray.join(' '));
     }
     this.callCheck = function (guess) {
-        console.log(guess);
         for (var i = 0; i < this.letterArray.length; i++) {
             this.letterArray[i].checkGuess(guess);
         }
