@@ -7,6 +7,7 @@ var numRight = 0;
 var chancesLeft = 10;
 var rightThisGuess = 0;
 var incorrectArray = [];
+var correctArray = [];
 
 
 function startGame() {
@@ -15,8 +16,15 @@ function startGame() {
     pickedWord.createArray(randomWord);
        // when concatenating with a string, JS automatically calls `toString`
     console.log(pickedWord.letterArray.join(' '));
-    console.log(randomWord);
     promptUser();
+}
+
+function resetGame() {
+    numRight = 0;
+    chancesLeft = 10;
+    rightThisGuess = 0;
+    incorrectArray = [];
+    correctArray = [];
 }
 
 startGame();
@@ -33,23 +41,35 @@ function evaluateGuess () {
         numRight = rightThisGuess;
         if (numRight === pickedWord.letterArray.length) {
             console.log("You won! \nNew Game Started!");
+            resetGame();
             startGame();
         }
         else {
             console.log("Correct!");
+            correctArray.push(guess);
             promptUser();
         }
     }
     else {
-        chancesLeft -= 1;
-        if (chancesLeft > 0) {
-            incorrectArray.push(guess);
-            console.log("Incorrect! " + chancesLeft + " chances left to guess! \nLetters you've already guessed: " + incorrectArray.join(", "));
+        if (incorrectArray.includes(guess)) {
+            console.log("You've already guessed the letter " + guess);
+            promptUser();
+        }
+        else if (correctArray.includes(guess)) {
             promptUser();
         }
         else {
-            console.log("Game Over! Better luck next time. Your word was: " + randomWord + ". \nNew Game Started!");
-            startGame();
+            chancesLeft -= 1;
+            if (chancesLeft > 0) {
+                incorrectArray.push(guess);
+                console.log("Incorrect! " + chancesLeft + " chances left to guess! \nLetters you've already guessed: " + incorrectArray.join(", "));
+                promptUser();
+            }
+            else {
+                console.log("Game Over! Better luck next time. Your word was: " + randomWord + ". \nNew Game Started!");
+                resetGame();
+                startGame();
+            }
         }
     }
 }
