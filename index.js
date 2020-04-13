@@ -7,14 +7,16 @@ var numRight = 0;
 var chancesLeft = 10;
 var incorrectArray = [];
 var correctArray = [];
+// array of potential words
+var wordList = ["broach", "travesty", "stipple", "gorge", "wince", "garble", "aver", "impetuous", "lachrymose", "propinquity", "caustic", "coda", "precepts"];
+var randomWord;
 
 startGame();
 
 function startGame() {
-    // array of potential words
-    var wordList = ["broach", "travesty", "stipple", "gorge", "wince", "garble", "aver", "impetuous", "lachrymose", "propinquity", "caustic", "coda", "precepts"];
+    
     // randomly choosed a word from the array 
-    var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+    randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     
     // uses constructor from word.js
     pickedWord = new Word();
