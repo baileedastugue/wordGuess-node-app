@@ -1,0 +1,22 @@
+{
+  "name": "wordguess-node-app",
+  "version": "1.0.0",
+  "description": "A word-guess game using Node and the CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baileedastugue/wordGuess-node-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baileedastugue/wordGuess-node-app/issues"
+  },
+  "homepage": "https://github.com/baileedastugue/wordGuess-node-app#readme",
+  "dependencies": {
+    "inquirer": "^7.1.0"
+  }
+}
